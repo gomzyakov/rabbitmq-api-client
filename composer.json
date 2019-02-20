@@ -18,12 +18,16 @@
         "php": ">=7.0",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "illuminate/support": ">=5.5.0 <5.8.0"
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/contracts": ">=5.4.0 <5.8.0",
+        "illuminate/support": ">=5.4.0 <5.8.0",
+        "illuminate/config": ">=5.4.0 <5.8.0",
+        "tarampampam/wrappers-php": "^1.2",
+        "ocramius/package-versions": "^1.2"
     },
     "require-dev": {
-        "laravel/laravel": ">=5.5.0 <5.8.0",
+        "laravel/laravel": ">=5.4.0 <5.8.0",
         "phpunit/phpunit": "~5.7.10 || ^6.4 || ~7.0",
-        "mockery/mockery": "0.9.* || ~1.0",
         "symfony/var-dumper": "~3.2 || ^4.0",
         "phpstan/phpstan": "~0.9 || ^0.10"
     },
@@ -38,14 +42,14 @@
         }
     },
     "scripts": {
-        "test": "@php ./vendor/bin/phpunit --no-coverage",
+        "test": "@php ./vendor/bin/phpunit --no-coverage --colors=always --testdox",
         "test-cover": "@php ./vendor/bin/phpunit --coverage-html='./coverage/html'",
         "phpstan": "@php ./vendor/bin/phpstan analyze --no-progress --ansi --level=max ./src"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "AvtoDev\\RabbitMqApiClient\\LaravelPackageServiceProvider"
+                "AvtoDev\\RabbitMqApiClient\\Frameworks\\Illuminate\\LaravelServiceProvider"
             ]
         }
     },

@@ -26,7 +26,7 @@ $ composer require avto-dev/rabbitmq-api-client "^1.0"
 
 > You need to fix the major version of package.
 
-> If your application based on Laravel framework - you can use next service-provider (Laravel 5.5 and above uses Package Auto-Discovery, so doesn't require you to manually register the service-provider):
+> If your application based on Laravel framework - you can register package service-provider in your `./config/app.php` (Laravel 5.5 and above uses Package Auto-Discovery, so doesn't require you to manually register the service-provider):
 >
 >```php
 >'providers' => [
@@ -48,10 +48,63 @@ $ composer require avto-dev/rabbitmq-api-client "^1.0"
 >    }
 >}
 >```
+>
+> After that you can "publish" package configuration file using following command:
+>
+> ```php
+> $ php artisan vendor:publish --provider="AvtoDev\\RabbitMqApiClient\\Frameworks\\Illuminate\\LaravelServiceProvider"
+> ```
 
 ## Usage
 
-{% Usage descriptions goes here %}
+At first, you should create API client instance:
+
+```php
+<?php
+
+use AvtoDev\RabbitMqApiClient\Client;
+use AvtoDev\RabbitMqApiClient\ConnectionSettings;
+
+$client = new Client(new ConnectionSettings('http://127.0.0.1:15672', 'guest', 'guest'));
+
+// And after that you can execute API commands, for example:
+
+$client::version();     // Client version, like `1.0.0`
+$client->healthcheck(); // `true` or `false`
+$client->queueInfo('some-queue-name'); // Object with information about queue
+```
+
+If you are using Laravel framework with registered package service-provider, you can resolve client instance using DI, for example:
+
+```php
+<?php
+
+namespace App\Console\Commands;
+
+use AvtoDev\RabbitMqApiClient\ClientInterface;
+
+class SomeCommand extends \Illuminate\Console\Command
+{
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'some:command';
+    
+    /**
+     * Execute the console command.
+     *
+     * @param ClientInterface $client
+     *
+     * @return void
+     */
+    public function handle(ClientInterface $client)
+    {
+        $client->healthcheck(); // `true` or `false`
+    }
+}
+```
 
 ### Testing
 
