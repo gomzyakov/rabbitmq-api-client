@@ -31,7 +31,7 @@ $ composer require avto-dev/rabbitmq-api-client "^1.0"
 >```php
 >'providers' => [
 >    // ...
->    AvtoDev\RabbitMqApiClient\LaravelPackageServiceProvider::class,
+>    AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider::class,
 >]
 >```
 >
