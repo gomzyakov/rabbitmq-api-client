@@ -68,7 +68,7 @@ class Client implements ClientInterface
             ->getBody()
             ->getContents();
 
-        return (Json::decode($contents)['status'] ?? null) === 'ok';
+        return (((array) Json::decode($contents))['status'] ?? null) === 'ok';
     }
 
     /**

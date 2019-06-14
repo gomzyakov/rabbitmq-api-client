@@ -19,7 +19,7 @@ interface ClientInterface
     public static function version(bool $without_hash = true): string;
 
     /**
-     * Call to the healthcheck method (returns true only id response contains success status).
+     * Call to the healthcheck method (returns true only if response contains success status).
      *
      * @param string|null $node_name
      *
