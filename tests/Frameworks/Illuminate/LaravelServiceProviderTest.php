@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests\Frameworks\Illuminate;
 
+use Illuminate\Support\Arr;
 use AvtoDev\RabbitMqApiClient\ClientInterface;
 use Illuminate\Config\Repository as ConfigRepository;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory;
@@ -34,7 +35,7 @@ class LaravelServiceProviderTest extends AbstractLaravelTestCase
         /** @var ConfigRepository $config */
         $config = $this->app->make(ConfigRepository::class);
 
-        foreach (array_dot($configs = require $path) as $key => $value) {
+        foreach (Arr::dot($configs = require $path) as $key => $value) {
             $this->assertEquals($config->get($base . '.' . $key), $value);
         }
 
