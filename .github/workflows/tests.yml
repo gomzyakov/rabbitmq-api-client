@@ -90,7 +90,7 @@ jobs: # Docs: <https://git.io/JvxXE>
         if: matrix.coverage == 'yes'
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage/php/clover.xml
+          file: ./coverage/clover.xml
           flags: php
           fail_ci_if_error: false
 
