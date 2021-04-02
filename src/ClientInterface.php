@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace AvtoDev\RabbitMqApiClient;
 
 use GuzzleHttp\Exception\RequestException;
-use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
 interface ClientInterface
 {
@@ -24,7 +23,7 @@ interface ClientInterface
      * @param string|null $node_name
      *
      * @throws RequestException
-     * @throws JsonEncodeDecodeException
+     * @throws \JsonException
      *
      * @return bool
      */
@@ -37,7 +36,7 @@ interface ClientInterface
      * @param string $vhost
      *
      * @throws RequestException
-     * @throws JsonEncodeDecodeException
+     * @throws \JsonException
      *
      * @return QueueInfo
      */

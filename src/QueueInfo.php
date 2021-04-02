@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient;
 
-use Tarampampam\Wrappers\Json;
-
 class QueueInfo implements QueueInfoInterface
 {
     /**
@@ -76,7 +74,7 @@ class QueueInfo implements QueueInfoInterface
      */
     public function toJson($options = 0): string
     {
-        return Json::encode($this->raw_data, $options);
+        return (string) \json_encode($this->raw_data, $options);
     }
 
     /**

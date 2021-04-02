@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace AvtoDev\RabbitMqApiClient\Tests;
 
 use Illuminate\Support\Str;
-use Tarampampam\Wrappers\Json;
 use AvtoDev\RabbitMqApiClient\QueueInfo;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
@@ -51,7 +50,7 @@ class QueueInfoTest extends AbstractTestCase
         $queue_info = new QueueInfo($input = ['foo' => 'bar']);
 
         $this->assertSame($input, $queue_info->toArray());
-        $this->assertSame(Json::encode($input), $queue_info->toJson());
+        $this->assertSame(\json_encode($input), $queue_info->toJson());
     }
 
     /**
