@@ -63,7 +63,7 @@ class ClientTest extends AbstractTestCase
     public function testPingSuccess(): void
     {
         $this->client->mock_handler->append(
-            new Response(200, ['content-type' => 'application/json'], json_encode([
+            new Response(200, ['content-type' => 'application/json'], \json_encode([
                 'status' => 'ok',
             ]))
         );
@@ -77,7 +77,7 @@ class ClientTest extends AbstractTestCase
     public function testPingFailed(): void
     {
         $this->client->mock_handler->append(
-            new Response(200, ['content-type' => 'application/json'], json_encode([
+            new Response(200, ['content-type' => 'application/json'], \json_encode([
                 'status' => 'failed',
                 'reason' => 'Something goes wrong',
             ]))
