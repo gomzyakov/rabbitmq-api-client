@@ -6,13 +6,11 @@ namespace AvtoDev\RabbitMqApiClient\Tests;
 
 use GuzzleHttp\Psr7\Response;
 use PackageVersions\Versions;
-use Tarampampam\Wrappers\Json;
 use AvtoDev\RabbitMqApiClient\Client;
 use AvtoDev\RabbitMqApiClient\QueueInfo;
 use GuzzleHttp\Exception\RequestException;
 use AvtoDev\RabbitMqApiClient\ClientInterface;
 use AvtoDev\RabbitMqApiClient\ConnectionSettings;
-use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
 /**
  * @covers \AvtoDev\RabbitMqApiClient\Client<extended>
@@ -65,7 +63,7 @@ class ClientTest extends AbstractTestCase
     public function testPingSuccess(): void
     {
         $this->client->mock_handler->append(
-            new Response(200, ['content-type' => 'application/json'], Json::encode([
+            new Response(200, ['content-type' => 'application/json'], \json_encode([
                 'status' => 'ok',
             ]))
         );
@@ -79,7 +77,7 @@ class ClientTest extends AbstractTestCase
     public function testPingFailed(): void
     {
         $this->client->mock_handler->append(
-            new Response(200, ['content-type' => 'application/json'], Json::encode([
+            new Response(200, ['content-type' => 'application/json'], \json_encode([
                 'status' => 'failed',
                 'reason' => 'Something goes wrong',
             ]))
@@ -93,7 +91,7 @@ class ClientTest extends AbstractTestCase
      */
     public function testPingWithWrongJsonResponse(): void
     {
-        $this->expectException(JsonEncodeDecodeException::class);
+        $this->expectException(\JsonException::class);
 
         $this->client->mock_handler->append(
             new Response(200, ['content-type' => 'application/json'], '{"status":"...')
@@ -134,7 +132,7 @@ class ClientTest extends AbstractTestCase
      */
     public function testQueueInfoWithWrongJsonResponse(): void
     {
-        $this->expectException(JsonEncodeDecodeException::class);
+        $this->expectException(\JsonException::class);
 
         $this->client->mock_handler->append(
             new Response(200, ['content-type' => 'application/json'], '{"data":"...')

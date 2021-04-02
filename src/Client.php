@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace AvtoDev\RabbitMqApiClient;
 
 use PackageVersions\Versions;
-use Tarampampam\Wrappers\Json;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\RequestOptions as GuzzleOptions;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
@@ -69,7 +68,9 @@ class Client implements ClientInterface
             ->getBody()
             ->getContents();
 
-        return (((array) Json::decode($contents))['status'] ?? null) === 'ok';
+        $contents = (array) \json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
+
+        return ($contents['status'] ?? null) === 'ok';
     }
 
     /**
@@ -84,7 +85,7 @@ class Client implements ClientInterface
             ->getBody()
             ->getContents();
 
-        return new QueueInfo((array) Json::decode($contents));
+        return new QueueInfo((array) \json_decode($contents, true, 512, JSON_THROW_ON_ERROR));
     }
 
     /**

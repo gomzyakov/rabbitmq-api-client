@@ -15,14 +15,13 @@
         }
     ],
     "require": {
-        "php": "^7.2 || ^8.0",
+        "php": "^7.3 || ^8.0",
         "ext-json": "*",
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^6.0 || ~7.0",
         "illuminate/contracts": "~6.0 || ~7.0 || ~8.0",
         "illuminate/support": "~6.0 || ~7.0 || ~8.0",
         "illuminate/config": "~6.0 || ~7.0 || ~8.0",
-        "tarampampam/wrappers-php": "^1.2 || ~2.0",
         "composer/package-versions-deprecated": "^1.11"
     },
     "require-dev": {
